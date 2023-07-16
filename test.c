@@ -3,8 +3,9 @@
 char *getstring(void);
 
 int main(void) {
-  char *t = getstring();
-  printf("You entered: %s\n", t);
+  // char *t = getstring();
+  char t = 'A';
+  printf("You entered: %p\n", &t);
   return 0;
 }
 
