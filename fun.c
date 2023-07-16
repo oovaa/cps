@@ -2,12 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+int add(int i1, int i2);
+
 int main(int argc, char const *argv[]) {
   char s1[] = "omer ";
   char s2[] = "abdolraheem ";
 
-    char* t = getstring();
-    printf("You entered: %s\n", t);
+  char *t = getstring();
+  printf("You entered: %s\n", t);
   // strcpy(string1,string2);
   // strncpy(string1,string2,5);
   // strrev(s1);

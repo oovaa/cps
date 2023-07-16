@@ -9,6 +9,16 @@
 					"label": ""
 				}
 			]
+		},
+		{
+			"path": "enums.c",
+			"bookmarks": [
+				{
+					"line": 9,
+					"column": 15,
+					"label": ""
+				}
+			]
 		}
 	]
 }
