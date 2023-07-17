@@ -19,6 +19,16 @@
 					"label": ""
 				}
 			]
+		},
+		{
+			"path": "memmanagement.c",
+			"bookmarks": [
+				{
+					"line": 51,
+					"column": 41,
+					"label": ""
+				}
+			]
 		}
 	]
 }
