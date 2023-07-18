@@ -1,1 +1,1 @@
-# cps
+# tranna learn C programing language 
