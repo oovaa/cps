@@ -19,23 +19,53 @@ bool isfree(int r, int c);
 
 int main(int argc, char const *argv[]) {
 
-  char winnre = ' ';
-  resetBoard();
+  char winner = ' ';
+  char response;
 
-  while (checkfreeSpaces() != 0 && winnre == ' ') {
+  do {
+    winner = ' ';
+    response = ' ';
+    resetBoard();
+
+    while (checkfreeSpaces() != 0 && winner == ' ') {
+      printBoard();
+      // printf("printBoard();\n");
+
+      playermove();
+      // printf("playermove();\n");
+
+      winner = checkwin();
+      if (winner != ' ' || checkfreeSpaces() == 0) {
+        printBoard();
+
+        printwinner(winner);
+        break;
+      }
+      // printf("checkwin();\n");
+
+      computermove();
+      // printf("computermove();\n");
+      winner = checkwin();
+      if (winner != ' ' || checkfreeSpaces() == 0) {
+        printBoard();
+
+        printwinner(winner);
+
+        break;
+      }
+      // printf("checkwin();\n");
+    }
     printBoard();
-    playermove();
-    checkwin();
-    if (winnre != ' ' || checkfreeSpaces() == 0) {
-      break;
-    }
+    printwinner(winner);
 
-    computermove();
-    checkwin();
-    if (winnre != ' ' || checkfreeSpaces() == 0) {
-      break;
-    }
-  }
+    printf("wanna play again ?? (y/n)\n");
+    // scanf(" %c");
+    scanf(" %c", &response);
+    response = toupper(response);
+
+  } while (response == 'Y');
+
+  printf("Thanks for playing\n");
 
   return 0;
 }
@@ -78,38 +108,38 @@ int checkfreeSpaces() {
 void playermove() {
   int r;
   int c;
-  printf("enter row num #1-3");
-  scanf("%d", &r);
-  printf("enter column num #1-3");
-  scanf("%d", &c);
-  r--;
-  c--;
+
   do {
-    printf("this place is full");
-
-    printf("enter row num #1-3");
+    printf("enter row num #1-3 : ");
     scanf("%d", &r);
-    printf("enter column num #1-3");
+    r--;
+    printf("enter column num #1-3 : ");
     scanf("%d", &c);
-
+    c--;
+    if (!isfree(r, c)) {
+      printf("this place is full");
+    } else {
+      board[r][c] = plyer;
+      break;
+    }
   } while (!isfree(r, c));
-  board[r][c] = plyer;
 }
 void computermove() {
-  if (!(checkfreeSpaces() > 0)) {
+  if ((checkfreeSpaces() > 0)) {
+
+    srand(time(0));
+    int r;
+    int c;
+
+    do {
+      r = rand() % 3;
+      c = rand() % 3;
+    } while (board[r][c] != ' ');
+    board[r][c] = com;
+  } else {
     printwinner(' ');
     return;
   }
-
-  srand(time(0));
-  int r = rand() % 3;
-  int c = rand() % 3;
-
-  do {
-    int r = rand() % 3;
-    int c = rand() % 3;
-  } while (!isfree(r, c));
-  board[r][c] = com;
 }
 char checkwin() {
   // h
@@ -139,12 +169,20 @@ char checkwin() {
 }
 void printwinner(char winner) {
   if (winner == plyer) {
-    printf("U WIN!!");
+    printf("U WIN!!\n");
   } else if (winner == com) {
-    /* code */ printf("U LOSE");
+    /* code */ printf("U LOSE !!\n");
 
   } else {
-    printf("it's a TIE");
+    printf("it's a TIE\n");
   }
 }
-bool isfree(r, c) { return board[r][c] == ' '; }
+
+bool isfree(int r, int c) {
+  if (r > 3 || c > 3 || r < 0 || c < 0) {
+    printf("INVALID INBUT \n");
+    return false;
+  }
+
+  return board[r][c] == ' ';
+}
