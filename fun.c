@@ -3,13 +3,41 @@
 #include <string.h>
 
 int add(int i1, int i2);
+int *rme(int *);
+int *bi(int *, int *);
 
 int main(int argc, char const *argv[]) {
-  char s1[] = "omer ";
-  char s2[] = "abdolraheem ";
 
-  char *t = getstring();
-  printf("You entered: %s\n", t);
+  int a = 10;
+  int *p = &a;
+
+  int *pa = rme(p);
+  printf("%d\n", *pa);
+  printf("%d\n", *&a);
+
+  // float d = 33.51;
+
+  // void *vp = &a;
+  // printf("%d\n", *vp);
+
+  // vp = &d;
+  // printf("%f\n", *vp);
+
+  // int x = 12;
+  // int a = 220;
+  // // int *pa = &x;
+  // int *pans = bi(&x, &a);
+  // int ans = *pans;
+  // // x = *(rme(px));
+  // printf("%p\n", pans);
+  // printf("%p\n", &a);
+  // printf("%d\n", *pans);
+  // printf("%d\n", a);
+  // char s1[] = "omer ";
+  // char s2[] = "abdolraheem ";
+
+  // char *t = getstring();
+  // printf("You entered: %s\n", t);
   // strcpy(string1,string2);
   // strncpy(string1,string2,5);
   // strrev(s1);
@@ -20,6 +48,21 @@ int main(int argc, char const *argv[]) {
   //  printf("%d",a);
 
   return 0;
+}
+int *bi(int *n1, int *n2) {
+  // if (*n1 > *n2) {
+  //   return n1;
+  // } else {
+  //   return n2;
+  // }
+  return *n1 > *n2 ? n1 : n2;
+}
+
+int *rme(int *p) {
+  *p++;
+  // printf(typeof(p));
+
+  return p;
 }
 
 int add(int i1, int i2) {

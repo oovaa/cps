@@ -10,6 +10,7 @@ int main(int argc, char *argv[]) {
   int *p;
 
   tryrealloc(p, 5);
+  free(p);
   // int *arrp = malloc(5 * sizeof(int));
   // arrp[2] = 2;
   // arrp[1] = 4;

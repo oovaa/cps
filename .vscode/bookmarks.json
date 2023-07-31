@@ -4,7 +4,7 @@
 			"path": "test.c",
 			"bookmarks": [
 				{
-					"line": 11,
+					"line": 20,
 					"column": 23,
 					"label": ""
 				}
@@ -24,8 +24,18 @@
 			"path": "memmanagement.c",
 			"bookmarks": [
 				{
-					"line": 51,
+					"line": 52,
 					"column": 41,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "fun.c",
+			"bookmarks": [
+				{
+					"line": 86,
+					"column": 16,
 					"label": ""
 				}
 			]
