@@ -13,8 +13,8 @@ double re = 2*PI*r;
 double area = PI * r*r;
 
 
+printf("the circ is %lf \n ",re);
 printf("the area is %lf ",area);
-// printf("the circ is %lf \n ",re);
 
     return 0;
 }

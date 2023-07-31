@@ -11,14 +11,15 @@ int main() {
   }
 
   char s;
+  printf("\nenter a symble: \n");
+  scanf(" %c", &s);
   printf("enter a symble: \n");
-  scanf("%c", &s);
-  scanf("%c");
+  scanf(" %c", &s); // the space matters it clears the buffer i think
+  // scanf("%c");
   for (int i = 0; i < 10; i++) {
     for (int l = i; l < 10; l++) {
       printf("%c  ", s);
     }
-printf("\n");
-
+    printf("\n");
   }
 }
