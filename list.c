@@ -6,13 +6,26 @@ int Capacity = 5;
 int *cp;
 
 void add(int i);
+int Remove(int i);
+void print();
+void set(int i, int v);
+void insert(int index, int val);
 
 int main(int argc, char const *argv[]) {
   cp = malloc(sizeof(int) * 5);
   int n = 0;
-  while (n <= 100) {
+  while (n < 10) {
     add(n++);
   }
+  print();
+  int removed_element = Remove(3);
+  printf("------------------\n");
+  insert(3, 4);
+  print();
+  // printf("last %d\n", cp[size]);
+
+  printf("removed_element = %d\n", removed_element);
+
   // n=11;
   // printf("%d,%d", n, n *= 2);
 
@@ -49,10 +62,36 @@ void add(int i) {
     cp = realloc(cp, Capacity * sizeof(int));
   }
   cp[size++] = i;
-  printf("cp[%d]=%d\n", size , cp[size - 1]); // Corrected index
+  // printf("cp[%d]=%d\n", size, cp[size - 1]); // Corrected index
   // printf("%d\n", Capacity);
 }
 
+int Remove(int targetindex) {
+  int t = cp[targetindex];
+  for (int i = targetindex; i + 1 < size; i++) {
+    cp[i] = cp[i + 1];
+  }
+  size--;
+  return t;
+}
+
+void print() {
+  for (int i = 0; i < size; i++) {
+    printf("cp[%d]=%d\n", i, cp[i]); // Corrected index
+  }
+}
+
+void set(int i, int v) { cp[i] = v; }
+bool isEmpty() { return size == -1; }
+
+void insert(int index, int val) {
+  size++;
+  int i;
+  for (i = size - 1; i > index; i--) {
+    cp[i + 1] = cp[i];
+  }
+  cp[i] = val;
+}
 // void add(int i) {
 //   if (size < Capacity)
 //     cp[size++] = i;
