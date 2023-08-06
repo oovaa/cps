@@ -1,1 +1,1 @@
-# tranna learn C programing language 
+# tranna learn C programming language 
