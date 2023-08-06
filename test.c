@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 
 char *getstring(void);
 #define pi 3414
@@ -7,8 +7,10 @@ char *getstring(void);
 
 int main(void) {
 
+  printf("%d\n", 'c');
+
   printf("%d\n", pi);
-  int a =100;
+  int a = 100;
   int x = compute(a);
   printf("%d\n", x);
 

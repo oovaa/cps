@@ -49,9 +49,9 @@ void tryrealloc(int *p, int size) {
 
   while (1) {
     if (c == size) {
-      size += 2;
+      size *= 2;
       p = realloc(p, size * sizeof(int));
-      printf("u added 2 extra blocks\n");
+      printf("\nnew capacity is %d \n", size);
     }
     printf("enter num   size is %d  c is %d:\n", size, c);
     scanf("%d", &val);
