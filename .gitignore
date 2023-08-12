@@ -1,5 +1,2 @@
 # Ignore all files except .c files
-*
-!*.c
-!*.gitignore
-!.vscode/
+*.o
