@@ -7,6 +7,7 @@
 };
 
 void add(int a);
+struct Node* delete(int a);
 void printlist();
 
 
@@ -27,6 +28,7 @@ for (int i = 0; i < count; i++)
     add(val);
     // printf("head val = %d\n",head->data);
 }
+    delete(3);
    printlist();   
 
     return 0;
@@ -47,6 +49,24 @@ void add(int a){
     }
 }
 
+
+struct Node* delete(int a){
+   struct Node* cur = first;
+   while (cur->next->data != a)
+   {
+   if (cur->next == NULL)
+   {
+    printf("NOT FOUND!!");
+    break;
+   }
+   cur = cur->next;
+   
+   }
+   cur->next = cur->next->next;
+
+    struct Node* t = cur->next;
+    return t;
+}
 
     // head = t;
     // if(first != NULL && first->next == NULL)  first->next = head;
