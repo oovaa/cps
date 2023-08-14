@@ -2,11 +2,11 @@
 
 // typedef char name[22];
 
-struct user {
+typedef struct  {
   char name[23];
   int id;
   float gpa;
-};
+}user;
 
 int main(int argc, char *argv[]) {
 

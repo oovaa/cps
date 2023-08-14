@@ -7,10 +7,15 @@ int* tryReturn(int*);
 int main(void)
 {
 
+    
+
+
     char a[5] = "tata";
     char s[5] = "nana";
+    // printf("%c\n",*(a+4));
+
     a[4] = *s ;// it worked  😂😂😂  combined two strings
-    printf("%s\n",a);
+    // printf("%s\n",a);
     // printf("%s\n",s);
     
     int x = 5;

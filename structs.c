@@ -8,6 +8,26 @@ int main(int argc, char *argv[]) {
     int score;
   };
 
+ typedef struct  {
+    int x;
+    char name[5] ;
+  }man;
+
+
+   man m = {23,"omer"};
+   man* p = &m;
+   p->x = 30;
+  //  p->name = "tata";
+   m.name[1] = 's'; 
+   p->name = "papa";
+
+
+  printf("%s\n :", m.name);
+  printf("%s\n :", p->name+2);
+  // printf("%s\t :", m.name);
+  // printf("%d\n", m.x);
+
+
   struct player p1;
   struct player p2;
 
@@ -17,10 +37,10 @@ int main(int argc, char *argv[]) {
   p2.score = 43;
 
 
-  printf("%s\t :", p1.name);
-  printf("%d\n", p1.score);
-  printf("%s\t :", p2.name);
-  printf("%d\n", p2.score);
+  // printf("%s\t :", p1.name);
+  // printf("%d\n", p1.score);
+  // printf("%s\t :", p2.name);
+  // printf("%d\n", p2.score);
 
   return 0;
 }
