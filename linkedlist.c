@@ -52,18 +52,17 @@ void add(int a){
 
 struct Node* delete(int a){
    struct Node* cur = first;
-   while (cur->next->data != a)
-   {
-   if (cur->next == NULL)
+    while (cur->next != NULL && cur->next->data != a) {
+      cur = cur->next;
+    }
+    
+   if (cur == NULL)
    {
     printf("NOT FOUND!!");
-    break;
-   }
-   cur = cur->next;
-   
-   }
-   cur->next = cur->next->next;
+    return NULL;
+   } 
 
+    cur->next = cur->next->next;
     struct Node* t = cur->next;
     return t;
 }
