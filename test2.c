@@ -7,6 +7,15 @@ int main(int argc, char const *argv[]) {
   double c;
   char s1[22];
   char s2[22];
+
+int i;
+
+i = 9;
+while (i--)
+{
+    printf("%d", i);
+}
+
 //   printf("enter name\n");
 //   scanf("%s", &s1);
 
@@ -16,13 +25,13 @@ int main(int argc, char const *argv[]) {
 //   char s1[22];
 //   char s2[22];
 
-  printf("enter name\n");
-  scanf("%s", s1);
+  // printf("enter name\n");
+  // scanf("%s", s1);
 
-  printf("enter name\n");
-  scanf("%s", s2);
+  // printf("enter name\n");
+  // scanf("%s", s2);
 
-  printf("\n%s and %s\n", s1, s2);
+  // printf("\n%s and %s\n", s1, s2);
 
   // printf("enter radios\n ");
 
