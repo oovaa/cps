@@ -6,8 +6,20 @@ int* tryReturn(int*);
 // #define psum(a, s) ((*a > *s) ? (*a) : (*s))
 int main(void)
 {
+ 
+    int x = 3;
+    int *p = &x;
+    int **pp = &p;
 
-    
+    // printf("x=%d\n",x);
+    // printf("*p=%d\n",*p);
+    // printf("**pp=%d\n",**pp);
+    // printf("p=%p\n",p);
+    // printf("&x=%p\n",&x);
+    // printf("*pp=%p\n",*pp);
+    // printf("&p=%p\n",&p);
+    // printf("pp=%p\n",pp);
+    // printf("&pp=%p\n",&pp);
 
 
     char a[5] = "tata";
@@ -18,11 +30,12 @@ int main(void)
     // printf("%s\n",a);
     // printf("%s\n",s);
     
-    int x = 5;
+    int z = 5;
     int y = 10;
-    int *result = psum(&x, &y);
+    // int *result = psum(&z, &y);
+    int result = max(z, y);
     
-    // printf("The larger value is: %d\n", *result);
+    // printf("The larger value is: %d\n", result);
 
 // int a = 2;
 // int s = 23;
@@ -39,9 +52,9 @@ int main(void)
 // printf("%d\n",*p);
 // printf("%p\n",p);
 
-    // char *a = "om\0e\0r";
-    // a = NULL;
-    // printf("%s\n",a);
+    char *h = "omer";
+    // h = NULL;
+    // printf("%s\n",h);
     // char s = 'a';
     // char *sp = *(0x7ffc32064857);
     // char *sp = &s; 

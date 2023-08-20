@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 
+void add(char arr[]);
 int main() {
 
-char name[5];
 // char name1[5]= "omar";
 // name[0]='o';
 // name[1]='m';
@@ -13,12 +14,15 @@ char name[5];
 // printf("%s\n",name);
 // printf("%s\n",name1);
 
+char *name = malloc(4*sizeof(char)); // u gotta allocate
 scanf("%s",name);
-
-
-  // double g[4] = {1,2,5,6};
+printf("%s\n",name);
   for (int i = 0; i < 4; i++)
   printf("%d=%c\n",i,name[i]);
+
+
+  // int g[4] = {1,2,5,6};
+  //  add(name);
   
 
   // int a[] = {2,4,6,7,NULL};
@@ -54,4 +58,8 @@ scanf("%s",name);
   //   }
   //   printf("\n");
   // }
+}
+void add(char arr[]){
+  for (size_t i = 0; i < 4; i++)
+  arr[i]++;
 }
