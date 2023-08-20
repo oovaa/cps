@@ -2,15 +2,14 @@
 #include <stdio.h>
 
 char *getstring(void);
-char* returnString(void);
+char *returnString(void);
 #define pi 3414
 #define compute(a) (sqrt(a))
 
 int main(void) {
 
-  char* name = returnString();
-  printf("%s\n",name);
-  
+  char *name = returnString();
+  printf("%s\n", name);
 
   // printf("%d\n", 'c');
 
@@ -24,14 +23,14 @@ int main(void) {
   // printf("You entered: %p\n", &t);
   return 0;
 }
-char* returnString(void){
- static char s[22];
+char *returnString(void) {
+  static char s[22];
   // fgets(s,22,stdin);
-  scanf("%s",s);
+  scanf("%s", s);
   // scanf("%s",s);
   // scanf("%s",s);
   return s;
-} 
+}
 
 char *getstring(void) {
   static char str[100];

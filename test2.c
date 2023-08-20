@@ -8,22 +8,21 @@ int main(int argc, char const *argv[]) {
   char s1[22];
   char s2[22];
 
-int i;
+  int i;
 
-i = 9;
-while (i--)
-{
+  i = 9;
+  while (i--) {
     printf("%d", i);
-}
+  }
 
-//   printf("enter name\n");
-//   scanf("%s", &s1);
+  //   printf("enter name\n");
+  //   scanf("%s", &s1);
 
-//   printf("enter name\n");
-//   scanf("%s", &s2);
+  //   printf("enter name\n");
+  //   scanf("%s", &s2);
 
-//   char s1[22];
-//   char s2[22];
+  //   char s1[22];
+  //   char s2[22];
 
   // printf("enter name\n");
   // scanf("%s", s1);

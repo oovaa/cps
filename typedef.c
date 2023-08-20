@@ -2,20 +2,20 @@
 
 // typedef char name[22];
 
-typedef struct  {
+typedef struct {
   char name[23];
   int id;
   float gpa;
-}user;
+} user;
 
 int main(int argc, char *argv[]) {
 
-  struct user u1 = {"omer", 12315, 4.00};
-  struct user u2 = {"tata", 35262, 2.43};
-  struct user u3 = {"nana", 66231, 3.20};
-  struct user u4 = {"toja", 12385, 2.80};
+  user u1 = {"omer", 12315, 4.00};
+  user u2 = {"tata", 35262, 2.43};
+  user u3 = {"nana", 66231, 3.20};
+  user u4 = {"toja", 12385, 2.80};
 
-  struct user users[] = {u1, u2, u3, u4};
+  user users[] = {u1, u2, u3, u4};
   int size = sizeof(users) / sizeof(users[1]);
 
   for (int i = 0; i < size; i++) {
