@@ -17,24 +17,25 @@ int main(int argc, char *argv[]) {
    man m = {23,"omer"};
    man* p = &m;
    p->x = 30;
-  //  p->name = "tata";
-   m.name[1] = 's'; 
-   p->name = "papa";
+  //  (*p).name = "tata";
+  //  p->name = "papa";
+  strcpy(m.name, "moham");
+  //  m.name = 'tata'; 
 
 
   printf("%s\n :", m.name);
   printf("%s\n :", p->name+2);
-  // printf("%s\t :", m.name);
-  // printf("%d\n", m.x);
+  printf("%s\t :", m.name);
+  printf("%d\n", m.x);
 
 
-  struct player p1;
-  struct player p2;
+  // struct player p1;
+  // struct player p2;
 
-  strcpy(p1.name, "omer");
-  p1.score = 23;
-  strcpy(p2.name, "mohammed");
-  p2.score = 43;
+  // strcpy(p1.name, "omer");
+  // p1.score = 23;
+  // strcpy(p2.name, "mohammed");
+  // p2.score = 43;
 
 
   // printf("%s\t :", p1.name);

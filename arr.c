@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void add(char arr[]);
 int main() {
@@ -13,14 +14,21 @@ int main() {
 
   // printf("%s\n",name);
   // printf("%s\n",name1);
-
-  char *name = malloc(4 * sizeof(char)); // u gotta allocate
+  // char name[5];
+  // char name2[5];
+  char *name = malloc(5 * sizeof(char)); // u gotta allocate
+  char *name2 = malloc(5 * sizeof(char));
   scanf("%s", name);
+  scanf("%s", name2);
+  // printf("%s\n", name);
+  // printf("%s\n", name2);
+  // name[4] = *name2; // this only work on arrays
   printf("%s\n", name);
+
   //  add(&name[0]); //u can do this
-  add(name + 1); // u can do this
-  for (int i = 0; i < 4; i++)
-    printf("%d=%c\n", i, name[i]);
+  // add(name + 1); // u can do this
+  // for (int i = 0; i < strlen(name); i++)
+  //   printf("%d=%c\n", i, name[i]);
 
   // int g[4] = {1,2,5,6};
 
@@ -56,6 +64,8 @@ int main() {
   //   }
   //   printf("\n");
   // }
+  free(name);
+  free(name2);
 }
 void add(char *arr) {
   *arr = *arr + 1;

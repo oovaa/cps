@@ -27,7 +27,7 @@ int main(void)
     // printf("%c\n",*(a+4));
 
     a[4] = *s ;// it worked  😂😂😂  combined two strings
-    // printf("%s\n",a);
+    printf("%s\n",a);
     // printf("%s\n",s);
     
     int z = 5;

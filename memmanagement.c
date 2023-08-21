@@ -7,10 +7,36 @@ void tryrealloc(int *p, int size);
 
 int main(int argc, char *argv[]) {
 
-  int *p;
+  int size = 5;
+  int *num = malloc(size * sizeof(int));
+  int in=0;
+  int i=0;
+  do
+  {
+   printf("enter number , -1 if u wanna exit \n");
+   scanf("%d",&in);
+   if (in == -1) break;
+   if (i == size) num = realloc (num, sizeof(int) * (size+=5));
+   
+   
+   num[i++] = in;
+  //  printf("num[%d] = %d\n",i , num[i-1]);
+   
+   printf("size = %d\n",size);
+  } while (in != -1);
+  
+  for (int f = 0; f < size; f++)
+  {
+   printf("num[%d] = %d\n",f , num[f]);
+   
+  }
+  
 
-  tryrealloc(p, 5);
-  free(p);
+
+  // int *p;
+
+  // tryrealloc(p, 5);
+  // free(p);
   // int *arrp = malloc(5 * sizeof(int));
   // arrp[2] = 2;
   // arrp[1] = 4;
