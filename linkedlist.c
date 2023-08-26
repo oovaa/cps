@@ -27,7 +27,7 @@ int main(void) {
     // printf("head val = %d\n",head->data);
   }
   //   delete (1);
-  insert(3, 5);
+  insert(4, 5);
   printlist();
 
   return 0;
@@ -39,8 +39,8 @@ void insert(int location, int data) {
   struct Node *cur = first;
   int i = 0;
   if (location != 1) {
-    while (i < location - 1) {
-      if (cur->next != NULL) {
+    while (i < location - 2) {
+      if (cur == NULL) {
         printf("INVALID!!");
         return;
       } else
