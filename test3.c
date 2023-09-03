@@ -1,11 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void printnum(char *n);
+void tobinary(int n);
 
 int main(int argc, char const *argv[]) {
 
-  printnum(122);
+  tobinary(9);
+
+  // printnum("-22");
   // int *p = NULL;
 
   // printf("%d\n",*p);
@@ -27,13 +31,27 @@ int main(int argc, char const *argv[]) {
 }
 
 void printnum(char *n) {
-  if (atoi(n) / 10) {
-
-    printnum(n[]);
+  if (*n == '-') {
+    printf("-");
+    n++;
   }
+  while (*(n + 1))
+    n++;
+
+  if (*n == '\0') {
+    printnum(n - 1);
+  }
+  putchar(*n);
 }
 
 int some_function(void) {
   // printf("%d", 12);
   return (98);
+}
+
+void tobinary(int n) {
+  if (n / 2)
+    tobinary(n / 2);
+
+  printf("%d", n % 2);
 }

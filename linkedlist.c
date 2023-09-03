@@ -5,11 +5,13 @@ struct Node {
   int data;
   struct Node *next;
 };
-
+void rev();
 void add(int a);
 void insert(int location, int data);
 struct Node *delete (int a);
 void printlist();
+void printrec(struct Node *start);
+void revprintrec(struct Node *start);
 
 struct Node *first;
 struct Node *head;
@@ -28,12 +30,27 @@ int main(void) {
   }
   //   delete (1);
   insert(4, 5);
-  printlist();
+  // printlist();
+  // rev();
+  revprintrec(first);
 
   return 0;
 }
 
-void insert(int location, int data) {
+void rev() { // reverse the linked list
+  struct Node *cur = first;
+  struct Node *pre = NULL;
+  struct Node *after;
+  while (cur != NULL) {
+    after = cur->next;
+    cur->next = pre;
+    pre = cur;
+    cur = after;
+  }
+  first = pre;
+}
+
+void insert(int location, int data) { // insert a node in a given index
   struct Node *t = (struct Node *)malloc(sizeof(struct Node));
   t->data = data;
   struct Node *cur = first;
@@ -88,6 +105,24 @@ struct Node *delete (int a) {
 
 // head = t;
 // if(first != NULL && first->next == NULL)  first->next = head;
+
+void printrec(struct Node *start) {
+  if (start->next == NULL) {
+    printf("%d\n", start->data);
+    return;
+  }
+  printf("%d -> ", start->data);
+  printrec(start->next);
+}
+
+void revprintrec(struct Node *start) {
+  if (start == NULL) {
+    return;
+  }
+  revprintrec(start->next);
+  printf("%d -> ", start->data); // TODO: fix the last arrow thing
+}
+
 void printlist() {
   struct Node *cur = first;
   while (cur->next != NULL) {

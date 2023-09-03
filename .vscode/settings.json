@@ -3,7 +3,19 @@
     "stdio.h": "c",
     "stdlib.h": "c",
     "string.h": "c",
-    "stddef.h": "c"
+    "stddef.h": "c",
+    "array": "c",
+    "atomic": "c",
+    "*.tcc": "c",
+    "concepts": "c",
+    "type_traits": "c",
+    "new": "c",
+    "numeric": "c",
+    "ostream": "c",
+    "system_error": "c",
+    "functional": "c",
+    "tuple": "c",
+    "utility": "c"
   },
   "C_Cpp.errorSquiggles": "enabled"
 }
