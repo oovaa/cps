@@ -13,6 +13,8 @@ struct Node *delete (int a);
 void printlist();
 void printrec(Node *start);
 void revprintrec(Node *start);
+void revprint();
+void printpreslist();
 
 Node *first;
 Node *head;
@@ -30,6 +32,9 @@ int main() {
     add(val);
   }
   printlist();
+  printpreslist();
+  revprint();
+
   return 0;
 }
 
@@ -54,10 +59,39 @@ void printrec(struct Node *start);
 void revprintrec(struct Node *start);
 
 void printlist() {
-  struct Node *cur = first;
+  Node *cur = first;
   while (cur->next != NULL) {
     printf("%d->", cur->data);
     cur = cur->next;
   }
   printf("%d\n", cur->data);
 }
+
+void printpreslist() { // print all pre nodes
+  struct Node *cur = first->next;
+  while (cur != NULL) {
+    printf("%d->", cur->pre->data);
+    if (cur->next == NULL)
+      printf("%d\n", cur->data);
+    cur = cur->next;
+  }
+}
+void revprint() {
+  Node *t = head;
+  while (t->pre != NULL) {
+    printf("%d->", t->data);
+    if (t->pre->pre == NULL)
+      printf("%d\n", t->pre->data);
+    t = t->pre;
+  }
+}
+
+// void printpreslist() { // print all pre nodes
+//   struct Node *cur = first->next;
+//   while (cur->next != NULL) {
+//     printf("%d->", cur->pre->data);
+//     cur = cur->next;
+//   }
+//   printf("%d->", cur->pre->data);
+//   printf("%d\n", cur->data);
+// }
