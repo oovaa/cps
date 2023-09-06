@@ -1,5 +1,6 @@
 #include <math.h>
 #include <stdio.h>
+#include <string.h>
 
 char *getstring(void);
 char *returnString(void);
@@ -8,8 +9,12 @@ char *returnString(void);
 
 int main(void) {
 
-  char *name = returnString();
-  printf("%s\n", name);
+  char *c = "omera";
+  printf("%ld\n", strlen(c));
+  printf("%ld\n", sizeof(c));
+
+  // char *name = returnString();
+  // printf("%s\n", name);
 
   // printf("%d\n", 'c');
 
