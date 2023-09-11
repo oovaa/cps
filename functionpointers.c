@@ -27,6 +27,12 @@ void print_arr(int *arr, int size) {
   printf("}\n");
 }
 
+void tas() { printf("take a shit\n"); }
+
+void sat() { printf("shit a take\n"); }
+
+void exe(void (*fn)()) { fn(); }
+
 int main() {
   int one[] = {12, 0, 5, 154, 87, 78, 124};
   int size = sizeof(one) / sizeof(int);
@@ -35,6 +41,13 @@ int main() {
   // bubble_sort(one, size, is_greater);
   bubble_sort(one, size, &second_digit);
   print_arr(one, size);
+  printf("%s\n", __DATE__);
+  printf("%s\n", __TIME__);
+  printf("%d\n", __LINE__);
+  printf("%d\n", __STDC__);
+
+  exe(&sat);
+  exe(&tas);
 
   return 0;
   return 0;
