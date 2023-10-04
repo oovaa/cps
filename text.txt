@@ -1,0 +1,4 @@
+In this example, the file named "example.txt" is 
+opened in write-only mode with the `O_TRUNC` flag.
+If the file exists, its contents will be truncated (cleared).
+If the file doesn't exist, a new file will be created.
