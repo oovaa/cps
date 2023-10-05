@@ -1,20 +1,41 @@
+#include <fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 int main(int argc, char *argv[]) {
-  char buf[256];
-  printf("$: ");
 
-  scanf("%[^\n]s", buf);
+  char *buf = NULL;
+  size_t len = 0;
+  ssize_t read;
 
-  printf("the text is: %s\n", buf);
+  int file = open("text.txt", O_RDONLY);
+  if (file == -1) {
+    perror("Failed to open file");
+    return 1;
+  }
 
-  scanf("%s");
-  
-  char buf2[256];
-  printf("$: ");
+  while ((read = getline(&buf, &len, fdopen(file, "r"))) != -1) {
+    printf("%.*s", (int)read, buf);
+  }
 
-  scanf("%[^\n]s", buf2);
-
-  printf("the text is: %s\n", buf2);
+  free(buf);
+  close(file);
   return 0;
+  // printf("$: ");
+  // fflush(stdout);
+
+  // scanf("%[^\n]s", buf);
+
+  // getline(&buf, &len, stdin); // Read a line using getline
 }
+// scanf("%s");
+
+// char buf2[256];
+// printf("$: ");
+
+// scanf("%[^\n]s", buf2);
+
+// printf("the text is: %s\n", buf2);
