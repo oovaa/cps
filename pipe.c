@@ -26,6 +26,7 @@ int main(int argc, char *argv[]) {
     if (read(fd[0], &y, sizeof(int)) == -1)
       return 3;
     close(fd[0]);
+    y += 1;
     printf("The y is %d\n", y);
     wait(NULL);
   }
