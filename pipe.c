@@ -14,18 +14,20 @@ int main(int argc, char *argv[]) {
   if (id == 0) {
     close(fd[0]);
     int x;
-    printf("enter number :  ");
+    printf("Enter number: ");
+    fflush(stdout);
     scanf("%d", &x);
-    write(fd[1], &x, sizeof(int));
+    if (write(fd[1], &x, sizeof(int)) == -1)
+      return 2;
     close(fd[1]);
   } else {
     int y;
     close(fd[1]);
-    read(fd[0], &y, sizeof(int));
+    if (read(fd[0], &y, sizeof(int)) == -1)
+      return 3;
     close(fd[0]);
-    printf("the y is %d\n", y);
-    
+    printf("The y is %d\n", y);
+    wait(NULL);
   }
-
   return 0;
 }
