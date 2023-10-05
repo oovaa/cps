@@ -16,10 +16,13 @@ int main(int argc, char *argv[]) {
     perror("Failed to open file");
     return 1;
   }
+  FILE *fd = fdopen(file, "r");
 
-  while ((read = getline(&buf, &len, fdopen(file, "r"))) != -1) {
+  while ((read = getline(&buf, &len, fd)) != -1) {
     printf("%.*s", (int)read, buf);
   }
+  printf("\n");
+  
 
   free(buf);
   close(file);
