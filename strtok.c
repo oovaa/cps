@@ -1,15 +1,42 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 int main() {
-    char str[] = "Hello World How Are You";
-    char delimiters[] = " ";
+  char *str;
+  char delimiters = ' ';
+  size_t l = 0;
 
-    char *token = strtok(str, delimiters);
-    while (token != NULL) {
-        printf("%s\n", token);
-        token = strtok(NULL, delimiters);
+  printf("$: ");
+  getline(&str, &l, stdin);
+  str[strcspn(str, "\n")] = '\0';
+
+  int i, j = 0;
+  char **arr = malloc(sizeof(char *) * 100);
+  arr[j] = malloc(sizeof(char) * 100);
+
+  for (i = 0; str[i]; i++) {
+    if (str[i] == delimiters) {
+      ++j;
+      ++i;
+      arr[j] = malloc(sizeof(char) * 100);
+      strcpy(arr[j], "");
     }
 
-    return 0;
+    strncat(&arr[j][0], &str[i], 1);
+  }
+
+  for (i = 0; arr[i]; i++) {
+    printf("%s\n", arr[i]);
+  }
+
+  free(arr);
+
+  // char *token = strtok(str, delimiters);
+  // while (token != NULL) {
+  //     printf("%s\n", token);
+  //     token = strtok(NULL, delimiters);
+  // }
+
+  return 0;
 }
