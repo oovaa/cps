@@ -10,7 +10,7 @@
 int main(int argc, char *argv[]) {
   char **arr;
   char *command = NULL;
-  int i, j = 0;
+  int j = 0;
   size_t line = 0;
 
   while (1) {
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
     int pid = fork();
     if (pid == 0) {
       execvp(arr[0], arr);
-      perror("execvp failed");  // Print an error message if execvp fails
+      perror("execvp failed"); // Print an error message if execvp fails
       exit(1);
     } else {
       wait(NULL);
