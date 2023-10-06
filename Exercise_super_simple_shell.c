@@ -12,6 +12,7 @@ int main(int argc, char *argv[]) {
   char *command = NULL;
   int i, j = 0;
   size_t line = 0;
+
   while (1) {
     printf("#OmarIsCool$ ");
     getline(&command, &line, stdin);
@@ -27,41 +28,40 @@ int main(int argc, char *argv[]) {
       return -1;
     }
 
-    arr[j] = malloc(sizeof(char) * 100);
-
-    for (i = 0; command[i]; i++) {
-
+    char *token = strtok(command, " ");
+    while (token != NULL) {
+      arr[j] = malloc(sizeof(char) * 100);
       if (arr[j] == NULL) {
         perror("the string is not allocated");
         return -1;
       }
-
-      if (command[i] == ' ') {
-        arr[j][i] = '\0';
-        ++j;
-        ++i;
-        arr[j] = malloc(sizeof(char) * 100);
-      }
-
-      strncat(arr[j], &command[i], 1);
+      strcpy(arr[j], token);
+      token = strtok(NULL, " ");
+      j++;
     }
-    arr[j + 1] = NULL;
 
-    // handel command in a child process
+    arr[j] = NULL;
+
+    // handle command in a child process
     int pid = fork();
     if (pid == 0) {
       execvp(arr[0], arr);
+      perror("execvp failed");  // Print an error message if execvp fails
+      exit(1);
     } else {
       wait(NULL);
     }
+
+    // Free allocated memory
+    for (int i = 0; i < j; i++) {
+      free(arr[i]);
+    }
+    j = 0;
+
+    free(arr);
+    free(command);
+    command = NULL;
   }
 
-  // Free allocated memory
-  for (int i = 0; i <= j; i++) {
-    free(arr[i]);
-  }
-  free(arr);
-
-  free(command);
   return 0;
 }
