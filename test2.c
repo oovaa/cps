@@ -1,19 +1,31 @@
 #include <math.h>
 #include <stdio.h>
 
-int main(int argc, char const *argv[]) {
-  const double PI = 3.14159;
-  double r;
-  double c;
-  char s1[22];
-  char s2[22];
+extern char **environ;
 
-  int i;
+int main(int argc, char *argv[], char *envp[]) {
 
-  i = 9;
-  while (i--) {
-    printf("%d", i);
-  }
+  char ***Aenviron = &environ;
+  char ***Aenv = &envp;
+  printf("Aenviron :%p   %p : env\n", Aenviron, Aenv);
+
+  // Iterate through the environment variables
+  // for (int i = 0; environ[i]; i++) {
+  //   printf("%s\n", environ[i]);
+  // }
+
+  // const double PI = 3.14159;
+  // double r;
+  // double c;
+  // char s1[22];
+  // char s2[22];
+
+  // int i;
+
+  // i = 9;
+  // while (i--) {
+  //   printf("%d", i);
+  // }
 
   //   printf("enter name\n");
   //   scanf("%s", &s1);
