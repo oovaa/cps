@@ -1,40 +1,57 @@
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_PATH_LENGTH 1024
 
-int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        printf("Usage: %s filename ...\n", argv[0]);
-        return 1;
+extern char **environ;
+
+char *getpath(char **env) {
+  char *ans = NULL;
+  int i = 0;
+
+  for (i = 0; env[i]; i++) {
+    if (strncmp(env[i], "PATH", 4) == 0) {
+      ans = strdup(env[i] + 5);
+      break;
+    }
+  }
+
+  return ans;
+}
+
+int main(int argc, char *argv[], char *env[]) {
+
+  char *path = getpath(env), del = ':', *token, *com;
+  size_t token_len, com_len;
+
+  if (argc != 2) {
+    perror("invalid number of args");
+    return -1;
+  }
+  com = argv[1];
+  com_len = strlen(com);
+
+  token = strtok(path, &del);
+  while (token) {
+    token_len = strlen(token);
+    char *modified_token = malloc((token_len + com_len + 2) * sizeof(char));
+    if (modified_token == NULL) {
+      perror("memory allocation failed");
+      return -1;
     }
 
-    // Get the PATH environment variable
-    char *path = getenv("PATH");
-    if (path == NULL) {
-        printf("PATH environment variable not found.\n");
-        return 1;
+    strcpy(modified_token, token);
+    strcat(modified_token, "/");
+    strcat(modified_token, com);
+    if (open(modified_token, O_RDONLY) != -1) {
+      printf("%s\n", modified_token);
+      return 0;
     }
 
-    // Tokenize the PATH variable to get individual directories
-    char *pathToken = strtok(path, ":");
-    while (pathToken != NULL) {
-        // Check if the file exists in the current directory
-        for (int i = 1; i < argc; i++) {
-            char filePath[MAX_PATH_LENGTH];
-            snprintf(filePath, sizeof(filePath), "%s/%s", pathToken, argv[i]);
+    free(modified_token);
+    token = strtok(NULL, &del);
+  }
 
-            FILE *file = fopen(filePath, "r");
-            if (file != NULL) {
-                printf("%s\n", filePath);
-                fclose(file);
-            }
-        }
-
-        // Move to the next directory in the PATH
-        pathToken = strtok(NULL, ":");
-    }
-
-    return 0;
+  return 0;
 }

@@ -6,8 +6,25 @@ void printnum(char *n);
 void tobinary(int n);
 
 int main(int argc, char const *argv[]) {
+  char *n = "str";
+  char *c = ".c";
 
-  tobinary(9);
+  size_t len_n = strlen(n);
+  size_t len_c = strlen(c);
+
+  char *a = malloc((len_n + len_c + 1) * sizeof(char));
+  if (a == NULL) {
+    printf("Memory allocation failed.\n");
+    return 1;
+  }
+
+  strcpy(a, n);
+  strcat(a, c);
+
+  printf("%s%s   %s\n", n, c, a);
+
+
+  // tobinary(9);
 
   // printnum("-22");
   // int *p = NULL;

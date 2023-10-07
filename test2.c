@@ -1,13 +1,35 @@
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 extern char **environ;
+
+char *getpath(char **arr) {
+  char *ans, *hold = malloc(sizeof(char) * 20);
+  int i = 0, j;
+  for (i = 0; arr[i]; i++) {
+
+    for (j = 0; arr[i][j] != '='; j++)
+      strncat(hold, &arr[i][j], 1);
+
+    hold[j] = '\0';
+    if (strcmp(hold, "PATH") == 0) {
+      strcpy(ans, arr[i] + 4);
+    }
+  }
+  return ans;
+}
 
 int main(int argc, char *argv[], char *envp[]) {
 
   char ***Aenviron = &environ;
   char ***Aenv = &envp;
-  printf("Aenviron :%p   %p : env\n", Aenviron, Aenv);
+  char *path;
+
+  printf("Aenviron: %p, Aenv: %p\n", Aenviron, Aenv);
+  path = getpath(envp);
+  printf("%s\n", path);
 
   // Iterate through the environment variables
   // for (int i = 0; environ[i]; i++) {
