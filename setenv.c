@@ -1,46 +1,61 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
-int setenv(const char *name, const char *value, int overwrite) {
-  if (name == NULL || value == NULL || strchr(name, '=') != NULL) {
-    return -1; // Invalid input
+extern char **environ;
+
+int _setenv(const char *name, const char *value, int overwrite) {
+
+  char *com = malloc(strlen(name) + strlen(value) + 2);
+  char *arr[] = {"/bin/sh", "-c", "export", com, NULL};
+  char **env = environ;
+  int id;
+
+  if (com == NULL) {
+    perror("malloc");
+    return -1;
   }
 
-  if (!overwrite && getenv(name) != NULL) {
-    return 0; // Variable already exists and overwrite is not allowed
-  }
+  printf("%s\n", com);
 
-  size_t len = strlen(name) + strlen(value) + 2; // +2 for '=' and '\0'
-  char *var = (char *)malloc(len);
-  if (var == NULL) {
-    return -1; // Failed to allocate memory
-  }
-
-  snprintf(var, len, "%s=%s", name, value);
-  int result = putenv(var); // Set the environment variable
-
-  if (result != 0) {
-    free(var);
-    return -1; // Failed to set the environment variable
-  }
-
-  return 0; // Success
-}
-int main(int argc, char *argv[]) {
-  const char *varName = "MY_VARIABLE";
-  const char *varValue = "Hello, World!";
-  int overwrite = 1,
-      id; // Set to 1 to overwrite if the variable already exists
+  strcpy(com, name);
+  com[strlen(name)] = '=';
+  strcpy(com + strlen(name) + 1, value);
 
   id = fork();
-  if (id == 0) {
-    _setenv(varName, varValue, overwrite);
-    perror("setenv didnt work");
+  if (id == -1) {
+    perror("fork");
+    free(com);
     return -1;
-  } else {
+  }
+  if (id == 0) {
+    execve("/bin/sh", arr, env);
+    perror("execve didnt work");
+    return -1;
+  } else
     wait(NULL);
-    printf("child process has ended");
+  return 0;
+}
+
+int main(int argc, char *argv[], char *env[]) {
+  const char *varName = "MY_VARIABLE";
+  const char *varValue = "Hello!";
+  int overwrite = 1;
+  int result = _setenv(varName, varValue, overwrite);
+
+  if (result == 0) {
+    // Check if the environment variable was added successfully
+    char *envVar = getenv(varName);
+    if (envVar != NULL) {
+      printf("Environment variable %s set to %s.\n", varName, envVar);
+    } else {
+      printf("Failed to set the environment variable envVar :%s.\n", varName);
+    }
+  } else {
+    printf("Failed to set the environment variable  is null  %s.\n", varName);
   }
 
   return 0;
