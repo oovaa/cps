@@ -4,43 +4,12 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-
-extern char **environ;
-
 int _setenv(const char *name, const char *value, int overwrite) {
+char *exp = "/usr/bin/export"; 
 
-  char *com = malloc(strlen(name) + strlen(value) + 2);
-  char *arr[] = {"export", com, NULL};
-  char **env = environ;
-  int id;
 
-  if (com == NULL) {
-    perror("malloc");
-    return -1;
-  }
-
-  printf("%s\n", com);
-
-  strcpy(com, name);
-  com[strlen(name)] = '=';
-  strcpy(com + strlen(name) + 1, value);
-
-  id = fork();
-  if (id == -1) {
-    perror("fork");
-    free(com);
-    return -1;
-  }
-  if (id == 0) {
-    execve(arr[0], arr, env);
-    perror("execve didnt work");
-    return -1;
-  } else
-    wait(NULL);
-  return 0;
 }
-
-int main(int argc, char *argv[], char *env[]) {
+int main(int argc, char *argv[]) {
   const char *varName = "MY_VARIABLE";
   const char *varValue = "Hello!";
   int overwrite = 1;
