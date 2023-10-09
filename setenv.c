@@ -38,6 +38,7 @@ int _setenv(const char *name, const char *value, int overwrite) {
     newenv[i] = environ[i];
 
   newenv[i] = fullvar;
+  // printf("%d\n", i); 
 
   environ = newenv;
 
