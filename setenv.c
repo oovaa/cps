@@ -9,34 +9,38 @@ extern char **environ;
 
 int _setenv(const char *name, const char *value, int overwrite) {
 
-  char *com = malloc(strlen(name) + strlen(value) + 2);
-  char *arr[] = {"export", com, NULL};
-  char **env = environ;
-  int id;
+  char *fullvar = malloc(strlen(name) + strlen(value) + 2);
+  char **newenv;
+  int i;
+  int count = 0;
 
-  if (com == NULL) {
-    perror("malloc");
-    return -1;
+  while (environ[count] != NULL)
+    count++;
+
+  strcpy(fullvar, name);
+  strcat(fullvar, "=");
+  strcat(fullvar, value);
+  // printf("%s\n\n", fullvar); passed
+
+  for (i = 0; environ[i]; i++) {
+    if (strncmp(name, environ[i], strlen(name)) == 0 && overwrite == 1) {
+      free(environ[i]);
+      environ[i] = strdup(fullvar);
+      return 0;
+    } else if (strncmp(name, environ[i], strlen(name)) == 0 && overwrite == 0) {
+      free(fullvar);
+      return 0;
+    }
   }
 
-  printf("%s\n", com);
+  newenv = malloc((count + 2) * sizeof(char *));
+  for (i = 0; i < count; i++)
+    newenv[i] = environ[i];
 
-  strcpy(com, name);
-  com[strlen(name)] = '=';
-  strcpy(com + strlen(name) + 1, value);
+  newenv[i] = fullvar;
 
-  id = fork();
-  if (id == -1) {
-    perror("fork");
-    free(com);
-    return -1;
-  }
-  if (id == 0) {
-    execve(arr[0], arr, env);
-    perror("execve didnt work");
-    return -1;
-  } else
-    wait(NULL);
+  environ = newenv;
+
   return 0;
 }
 
@@ -60,3 +64,37 @@ int main(int argc, char *argv[], char *env[]) {
 
   return 0;
 }
+
+// old one
+// int _setenv(const char *name, const char *value, int overwrite) {
+
+//   char *com = malloc(strlen(name) + strlen(value) + 2);
+//   char *arr[] = {"export", com, NULL};
+//   char **env = environ;
+//   int id;
+
+//   if (com == NULL) {
+//     perror("malloc");
+//     return -1;
+//   }
+
+//   printf("%s\n", com);
+
+//   strcpy(com, name);
+//   com[strlen(name)] = '=';
+//   strcpy(com + strlen(name) + 1, value);
+
+//   id = fork();
+//   if (id == -1) {
+//     perror("fork");
+//     free(com);
+//     return -1;
+//   }
+//   if (id == 0) {
+//     execve(arr[0], arr, env);
+//     perror("execve didnt work");
+//     return -1;
+//   } else
+//     wait(NULL);
+//   return 0;
+// }
