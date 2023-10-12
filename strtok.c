@@ -40,7 +40,8 @@ int main() {
     printf("%s\n", arr[i]);
     free(arr[i]);
   }
-
+  
+  printf("%d\n", j);
   free(arr);
 
   return 0;

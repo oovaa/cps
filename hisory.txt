@@ -1,0 +1,9 @@
+ls
+clear
+cat *
+ls
+cat fork.c
+clear
+pwd
+cd
+cd /

@@ -13,7 +13,7 @@ char *gpath() {
       break;
     }
   }
-  return path + 1;
+  return path;
 }
 int getlastslasidx(char *str) {
   int idx = 0;
