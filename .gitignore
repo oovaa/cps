@@ -1,2 +1,3 @@
 # Ignore all files except .c files
 *.o
+C
