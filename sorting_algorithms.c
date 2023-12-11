@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+void printArray(int arr[], int size);
 // Swap function
 void swap(int *a, int *b) {
   int temp = *a;
@@ -36,6 +37,34 @@ void selection_sort(int *array, size_t size) {
   }
 }
 
+int partition(int *array, size_t start, size_t end) {
+  int pivot = array[end];
+  int i = start - 1, j;
+
+  for (j = start; j < end; j++)
+    if (array[j] < pivot)
+      swap(&array[++i], &array[j]);
+
+  swap(&array[++i], &array[end]);
+  return i;
+}
+
+void quick_rec(int *array, int start, int end) {
+  int pivot;
+
+  if (start >= end)
+    return;
+
+  pivot = partition(array, start, end);
+  
+  if (pivot > 0 && start < pivot - 1)
+    quick_rec(array, start, pivot - 1);
+
+  quick_rec(array, pivot + 1, end);
+}
+
+void quick_sort(int *array, size_t size) { quick_rec(array, 0, (int)size - 1); }
+
 // Function to print an array
 void printArray(int arr[], int size) {
   for (int i = 0; i < size; i++)
@@ -45,16 +74,15 @@ void printArray(int arr[], int size) {
 
 // Test the sorting algorithms
 int main() {
-  int arr[] = {64, 36, 25, 12, 22, 11, 91};
+  int arr[] = {8, 2, 5, 3, 4, 7, 6, 1};
   int n = sizeof(arr) / sizeof(arr[0]);
 
-  selection_sort(arr, n);
+  quick_sort(arr, n);
   printf("Sorted array: \n");
   printArray(arr, n);
 
   return 0;
 }
-
 
 // Insertion Sort
 // void insertion_sort_list(listint_t **list);
