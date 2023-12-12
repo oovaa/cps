@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 void printArray(int arr[], int size);
 // Swap function
@@ -56,7 +57,7 @@ void quick_rec(int *array, int start, int end) {
     return;
 
   pivot = partition(array, start, end);
-  
+
   if (pivot > 0 && start < pivot - 1)
     quick_rec(array, start, pivot - 1);
 
@@ -72,11 +73,21 @@ void printArray(int arr[], int size) {
   printf("\n");
 }
 
+void shell_sort(int *array, size_t size) {
+  int i, j, gap;
+  for (gap = size / 2; gap > 0; gap /= 2)
+    for (i = gap; i < size; i++)
+      j = i;
+  while (j >= gap && array[j] > array[j - gap])
+    swap(&array[j], &array[(j -= gap) - gap]);
+}
+
 // Test the sorting algorithms
 int main() {
-  int arr[] = {8, 2, 5, 3, 4, 7, 6, 1};
+  time_t start = 
+  int arr[] = {6, 1, 9, 2, 7, 8, 4, 3, 5};
   int n = sizeof(arr) / sizeof(arr[0]);
-
+  int start = time.
   quick_sort(arr, n);
   printf("Sorted array: \n");
   printArray(arr, n);
