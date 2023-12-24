@@ -17,5 +17,6 @@
     "tuple": "c",
     "utility": "c"
   },
-  "C_Cpp.errorSquiggles": "enabled"
+  "C_Cpp.errorSquiggles": "enabled",
+  "cmake.sourceDirectory": "/home/omar/cps/C"
 }

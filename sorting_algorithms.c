@@ -84,13 +84,19 @@ void shell_sort(int *array, size_t size) {
 
 // Test the sorting algorithms
 int main() {
-  time_t start = 
-  int arr[] = {6, 1, 9, 2, 7, 8, 4, 3, 5};
-  int n = sizeof(arr) / sizeof(arr[0]);
-  int start = time.
-  quick_sort(arr, n);
-  printf("Sorted array: \n");
-  printArray(arr, n);
+  clock_t start, end;
+  int arr[20000];
+  int n = sizeof(arr) / sizeof(arr[0]), i;
+
+  for (i = 0; i < 20000; i++)
+    arr[i] = rand() % 500 + 1;
+
+  start = clock();
+  shell_sort(arr, n);
+  end = clock();
+  // printf("Sorted array: \n");
+  // printArray(arr, n);
+  printf("it took %.4g ms \n", ((double)(end - start) / CLOCKS_PER_SEC) * 1e3);
 
   return 0;
 }
