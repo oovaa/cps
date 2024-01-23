@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <ctype.h>
+#include <stdio.h>
 int main(int argc, char const *argv[]) {
 
   int ot;
@@ -11,7 +11,7 @@ int main(int argc, char const *argv[]) {
 
   printf("enter temp :\t");
   scanf("%d", &ot);
-// a new line to test git fetch
+  // a new line to test git fetch
   switch (t) {
   case 'C':
     ot = (ot / 9 * 5) + 32;
