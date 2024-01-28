@@ -3,5 +3,6 @@
 
 void f1();
 void f2();
+void shit();
 
 #endif // !FS_H

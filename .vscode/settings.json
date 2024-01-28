@@ -15,8 +15,9 @@
     "system_error": "c",
     "functional": "c",
     "tuple": "c",
-    "utility": "c"
+    "utility": "c",
+    "tree.h": "c"
   },
-  "C_Cpp.errorSquiggles": "enabled",
+  "C_Cpp.errorSquiggles": "disabled",
   "cmake.sourceDirectory": "/home/omar/cps/C"
 }
