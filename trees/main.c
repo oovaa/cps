@@ -4,21 +4,21 @@ node *root = NULL;
 
 int main()
 {
-  addN(1);
-  addN(2);
-  addN(3);
-  addN(4);
+  addN(20);
+  addN(10);
+  addN(30);
   addN(5);
-  addN(6);
-  addN(7);
+  addN(3);
+  addN(50);
+  addN(15);
+  addN(33);
 
-  node *n = findMin();
+  node *tmp = delete (10);
 
-  printf("%d\n", n->val);
+  printf("tmp = %d\n", tmp->val);
+  printf("root = %d\n", root->left->left->val); // great 🔥
 
-  node *m = findMax();
-
-  printf("%d\n", m->val);
-
+  in_order(root);
   return 0;
 }
+// TODO: add a parent pointer

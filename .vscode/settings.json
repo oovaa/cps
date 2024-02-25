@@ -16,7 +16,10 @@
     "functional": "c",
     "tuple": "c",
     "utility": "c",
-    "tree.h": "c"
+    "tree.h": "c",
+    "algorithm": "c",
+    "istream": "c",
+    "sstream": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "cmake.sourceDirectory": "/home/omar/cps/C"

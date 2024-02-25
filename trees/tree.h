@@ -26,5 +26,10 @@ node *search(int val);
 node *findMin();
 node *findMax();
 
+node *parent_search(int val);
+node *delete(int val);
+
+int height(node *root);
+int depth(node *root);
 
 #endif // TREE_H

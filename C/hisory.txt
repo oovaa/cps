@@ -1,9 +1,0 @@
-pwd
-;s
-ls
-cat README.md
-clear
-ls
-exit
-exit
-exit 34
